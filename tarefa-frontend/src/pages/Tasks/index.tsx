@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
+import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 import moment from 'moment';
+import './index.css';
+
 
 
 interface ITask{
@@ -17,6 +20,7 @@ interface ITask{
 const Tasks: React.FC = () => {
  
     const [tasks, setTasks] = useState<ITask[]>([])
+    const history = useHistory()
  
     useEffect(() => {
         loadTasks()
@@ -32,12 +36,23 @@ const Tasks: React.FC = () => {
         return moment(date).format('DD/MM/YYYY')
     }
 
-    
+    function newTask(){
+        history.push('/tarefas_cadastro')
+    }
+
+    function editTask(id: number){
+        history.push(`/tarefas_cadastro/${id}`)
+    }
+
+
     return (
-        <div className = "container">
-            <br />
-            <h1>Página de Tarefas</h1>
-            <br />
+        <div className="container">
+        <br />
+        <div className="task-header">
+            <h1>Tarefas</h1>
+            <Button variant="dark" size="sm" onClick={newTask}>Nova Tarefa</Button>
+        </div>
+        <br />
             <Table striped bordered hover>
   <thead>
     <tr>
