@@ -1,1 +1,1 @@
-Tarefa-Web is the frontend of 
+Tarefa-Web is the Front-end of 
